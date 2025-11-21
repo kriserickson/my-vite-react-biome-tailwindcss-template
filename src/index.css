@@ -5,12 +5,26 @@ body {
   @apply bg-slate-50 text-slate-900;
 }
 
-.btn {
-  @apply font-bold py-2 px-4 rounded;
+@layer base {
+    /* Will be overridden by components and utilities */
+    button {
+        @apply font-bold py-2 px-4 rounded;
+    }
 }
-.btn-blue {
-  @apply bg-blue-500 text-white;
+
+@layer components {
+    /* Will be overridden by utilities */
+    .blue {
+        @apply bg-blue-500 text-white;
+    }
+    .blue:hover {
+        @apply bg-blue-700;
+    }
+
 }
-.btn-blue:hover {
-  @apply bg-blue-700;
+
+@layer utilities {
+    /* Wins against everything else */
+
 }
+
