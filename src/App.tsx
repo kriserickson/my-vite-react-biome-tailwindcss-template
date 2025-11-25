@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6">
       <div className="mb-4">
-        <button type="button" onClick={() => setUpdateDate(!updateDate)} className="btn btn-blue">
+        <button type="button" onClick={() => setUpdateDate(!updateDate)} className={updateDate ? 'red' : 'blue'}>
           {updateDate ? 'Stop Updating Date' : 'Start Updating Date'}
         </button>
       </div>
