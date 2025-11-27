@@ -1,19 +1,23 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
 
 describe('App Component Clock', () => {
+
+  const user = userEvent.setup();
+
   beforeEach(() => {
+    vi.clearAllMocks();
     vi.useFakeTimers();
   });
 
   afterEach(() => {
     // Clear mocks and restore timers to prevent leaks between tests
-    vi.clearAllMocks();
     vi.useRealTimers();
   });
 
-  it('should update time every second and pause/resume on button click', () => {
+  it('should update time every second and pause/resume on button click', async() => {
     render(<App />);
 
     // 1. Find the time display.
@@ -42,7 +46,8 @@ describe('App Component Clock', () => {
       name: /stop/i,
     });
 
-    fireEvent.click(toggleButton);
+    // User click on the toggle button
+    await user.click(toggleButton);
 
     // 4. Advance time by 2 seconds to ensure it is truly stopped
     act(() => {
@@ -57,7 +62,7 @@ describe('App Component Clock', () => {
     // Optional: Check if button text flipped to 'Start'
     expect(toggleButton).toHaveTextContent(/start/i);
 
-    // 5. Click START to resume
+    // 5. Click START to resume (do it with the low-level fireEvent to simulate different interaction)
     fireEvent.click(toggleButton);
 
     // 6. Advance time by 1 second
