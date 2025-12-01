@@ -22,14 +22,14 @@
       "recommended": true,
       "correctness": {
         "useHookAtTopLevel": "error",
-        "useExhaustiveDependencies": "warn"
+        "useExhaustiveDependencies": "error"
       },
       "style": {
         "useBlockStatements": "error",
-        "useSelfClosingElements": "warn"
+        "useSelfClosingElements": "error"
       },
       "complexity": {
-        "noExcessiveCognitiveComplexity": "off"
+        "noExcessiveCognitiveComplexity": "warn"
       },
       "a11y": {
         "noStaticElementInteractions": "off",
