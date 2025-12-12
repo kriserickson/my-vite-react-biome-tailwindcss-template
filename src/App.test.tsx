@@ -6,7 +6,8 @@ import '@testing-library/jest-dom';
 
 describe('App Component Clock', () => {
 
-  const user = userEvent.setup();
+  // Can't use user click because we are using fake timers and user event requires real timeouts    
+  // const user = userEvent.setup();
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -47,8 +48,8 @@ describe('App Component Clock', () => {
       name: /stop/i,
     });
 
-    // User click on the toggle button
-    await user.click(toggleButton);
+    // Can't use user click because we are using fake timers and user event requires real timeouts
+    fireEvent.click(toggleButton);
 
     // 4. Advance time by 2 seconds to ensure it is truly stopped
     act(() => {
